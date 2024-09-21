@@ -19,15 +19,18 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ darkMode }) => {
   const handleEdit = (transaction: Transaction) => {
     const newDescription = prompt("Enter new description:", transaction.description);
     const newAmount = prompt("Enter new amount:", transaction.amount.toString());
+    
     if (newDescription && newAmount) {
       dispatch(editTransaction({ 
         ...transaction, 
         description: newDescription, 
         amount: parseFloat(newAmount),
-        isRecurring: transaction.isRecurring 
+        isRecurring: transaction.isRecurring,
+        date: transaction.date // Convert to ISO string
       }));
     }
   };
+  
 
   return (
     <div>
@@ -41,7 +44,7 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ darkMode }) => {
       <ul>
         {filteredTransactions.map((transaction: Transaction) => (
           <li key={transaction.id} className={`flex justify-between p-4 border-b ${transaction.type === 'expense' ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'} rounded-lg shadow-sm transition`}>
-            <span>{transaction.description} - ${transaction.amount} - {new Date(transaction.date).toLocaleDateString()}</span>
+            <span>{transaction.description} - ${transaction.amount} - {transaction.date.toLocaleDateString()}</span>
             <div>
               <button onClick={() => handleEdit(transaction)} className="bg-yellow-500 text-white rounded px-2 py-1 mx-1 hover:bg-yellow-400 transition">Edit</button>
               <button onClick={() => dispatch(removeTransaction(transaction.id))} className="bg-red-500 text-white rounded px-2 py-1 mx-1 hover:bg-red-400 transition">Remove</button>

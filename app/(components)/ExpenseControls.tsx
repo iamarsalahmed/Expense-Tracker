@@ -22,10 +22,10 @@ const ExpenseControls = () => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = (event) => {
-        const csvData = event.target?.result as string;
-        // Parse and dispatch actions to add transactions
-      };
+      // reader.onload = () => {
+      //   // const csvData = event.target?.result as string;
+      //   // Parse and dispatch actions to add transactions
+      // };
       reader.readAsText(file);
     }
   };

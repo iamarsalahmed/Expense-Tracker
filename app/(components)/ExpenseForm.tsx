@@ -2,15 +2,9 @@ import React, { useState } from 'react';
 import DatePicker from 'react-datepicker'; // Ensure this package is installed
 import 'react-datepicker/dist/react-datepicker.css';
 import { Transaction } from '../types/types';
+
 interface ExpenseFormProps {
-  onAddTransaction: (transaction: {
-    id: number;
-    description: string;
-    amount: number;
-    date: Date;
-    isRecurring: boolean;
-    type: string;
-  }) => void;
+  onAddTransaction: (transaction: Transaction) => void; // Use Transaction directly
   darkMode: boolean; // Specify the type for darkMode prop
 }
 
@@ -19,29 +13,9 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAddTransaction, darkMode })
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState<Date>(new Date()); // Ensure date is a Date object
   const [isRecurring, setIsRecurring] = useState(false);
-  const [type, setType] = useState('expense'); // Default type
+  const [type, setType] = useState<'expense' | 'income'>('expense'); // Use union type
 
-//   const handleSubmit = (e: React.FormEvent) => {
-//     e.preventDefault();
-//     if (!description || !amount) return;
-
-//     const newTransaction = {
-//       id: Date.now(),
-//       description,
-//       amount: parseFloat(amount),
-//       date,
-//       isRecurring,
-//       type,
-//     };
-
-//     onAddTransaction(newTransaction);
-//     setDescription('');
-//     setAmount('');
-//     setDate(new Date());
-//     setIsRecurring(false);
-//     setType('expense'); // Reset type to default
-//   };
-const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!description || !amount || !date) return;
   

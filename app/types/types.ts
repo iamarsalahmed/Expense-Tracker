@@ -29,9 +29,9 @@ export interface Transaction {
     id: number;
     description: string;
     amount: number;
-    date: Date; // Ensure this is Date
+    date: Date; // Keep as Date
     isRecurring: boolean;
-    type: 'income' | 'expense'; // Restrict to specific string literals
+    type: 'income' | 'expense'; 
   }
   
 

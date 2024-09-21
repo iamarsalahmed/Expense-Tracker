@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+// Define the Transaction interface with date as Date
 interface Transaction {
   id: number;
   description: string;
   amount: number;
   type: 'income' | 'expense';
-  date: string;  // Add date field
+  date: Date;  // Change this to Date type
   isRecurring: boolean; // Add recurring field
 }
 
@@ -16,8 +17,6 @@ interface ExpenseState {
 const initialState: ExpenseState = {
   transactions: [],
 };
-
-// ... your existing slice code ...
 
 const expenseSlice = createSlice({
   name: 'expenses',
