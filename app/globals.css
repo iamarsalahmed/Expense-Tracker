@@ -3,6 +3,16 @@
 @tailwind utilities;
 
 :root {
+  --background-color: white;
+  --text-color: black;
+}
+
+.dark-mode {
+  --background-color: black;
+  --text-color: white;
+}
+
+:root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -25,3 +35,8 @@ body {
     text-wrap: balance;
   }
 }
+/* that how my web is looking now i want make the following changes
+shift export transaction to the right side
+there should be spacing between export transaction and toogle dark button
+further from "description" to "search transaction" should be centered and input button should ne be that large it should be almost 400px in the center 
+further the graph shouldn't cover the whole page it should be a small compact  */
